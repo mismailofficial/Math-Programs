@@ -156,7 +156,6 @@ public class Matrices {
         System.out.println("\t7. Cheching Upper Triangular Matrix");
         System.out.println("\t8. Cheching Lower Triangular Matrix");
         System.out.println("\t9. Transpose Matrix");
-        System.out.println("\t10. Determinent");
 
         int choice = input.nextInt();
 
