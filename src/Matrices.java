@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Matrices {
+    static Scanner input = new Scanner(System.in);
     // Method for adding two matrices
     public static int[][] add(int[][] a, int[][] b) {
 
@@ -140,7 +141,6 @@ public class Matrices {
         return true;
     }
     public static int[][] matInput(int r, int c) {
-        Scanner input = new Scanner(System.in);
         int[][] mat = new int[r][c];
         for (int i = 0; i < r; i++) {
             for (int j = 0; j < c; j++) {
@@ -152,7 +152,7 @@ public class Matrices {
     }
     // Main Method
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+
         System.out.println("\n\t\t=====!!!!!^^^^^ MENU ^^^^^!!!!!=====");
         System.out.println("\n\t1. Matrix Addition");
         System.out.println("\t2. Matrix Subtraction");
