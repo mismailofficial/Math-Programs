@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class Matrices {
-
     // Method for adding two matrices
     public static int[][] add(int[][] a, int[][] b) {
 
@@ -140,12 +139,20 @@ public class Matrices {
         }
         return true;
     }
-
+    public static int[][] matInput(int r, int c) {
+        Scanner input = new Scanner(System.in);
+        int[][] mat = new int[r][c];
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                System.out.print("matrix1["+i+"]["+j+"]: ");
+                mat[i][j] = input.nextInt();
+            }
+        }
+        return mat;
+    }
     // Main Method
     public static void main(String[] args) {
-
         Scanner input = new Scanner(System.in);
-
         System.out.println("\n\t\t=====!!!!!^^^^^ MENU ^^^^^!!!!!=====");
         System.out.println("\n\t1. Matrix Addition");
         System.out.println("\t2. Matrix Subtraction");
@@ -171,71 +178,61 @@ public class Matrices {
                 System.out.print("Enter columns of second matrix: ");
                 int c2 = input.nextInt();
 
-                int[][] mat1 = new int[r1][c1];
-                int[][] mat2 = new int[r2][c2];
-
-
                 System.out.println("\nEnter the co-efficients of matrix 1:");
-                for (int i = 0; i < r1; i++) {
-                    for (int j = 0; j < c1; j++) {
-                        System.out.print("matrix1["+i+"]["+j+"]: ");
-                        mat1[i][j] = input.nextInt();
-                    }
-                }
-
+                int[][] mat1 = matInput(r1,c1);
                 System.out.println("\nEnter the co-efficients of matrix 2:");
-                for (int i = 0; i < r2; i++) {
-                    for (int j = 0; j < c2; j++) {
-                        System.out.print("matrix2["+i+"]["+j+"]: ");
-                        mat2[i][j] = input.nextInt();
-                    }
-                }
+                int[][] mat2 = matInput(r2,c2);
 
-                if (choice == 1) {
-                    try {
-                        int[][] result = Matrices.add(mat1, mat2);
-                        System.out.println("\nThe Resultant matrix is:");
-                        for (int[] i: result) {
-                            for (int j: i) {
-                                System.out.print(j + " ");
+                switch (choice) {
+                    case 1:
+                        try {
+                            int[][] result = Matrices.add(mat1, mat2);
+                            System.out.println("\nThe Resultant matrix is:");
+                            for (int[] i : result) {
+                                for (int j : i) {
+                                    System.out.print(j + " ");
+                                }
+                                System.out.println();
                             }
-                            System.out.println();
+                        } catch (Exception e) {
+                            System.out.println("We cannot add these two matrix");
                         }
-                    } catch (Exception e) {
-                        System.out.println("We cannot add these two matrix");
-                    }
-                } else if (choice == 2) {
-                    try {
-                        int[][] result = Matrices.sub(mat1, mat2);
-                        System.out.println("\nThe Resultant matrix is:");
-                        for (int[] i: result) {
-                            for (int j: i) {
-                                System.out.print(j + " ");
+                        break;
+                    case 2:
+                        try {
+                            int[][] result = Matrices.sub(mat1, mat2);
+                            System.out.println("\nThe Resultant matrix is:");
+                            for (int[] i : result) {
+                                for (int j : i) {
+                                    System.out.print(j + " ");
+                                }
+                                System.out.println();
                             }
-                            System.out.println();
+                        } catch (Exception e) {
+                            System.out.println("We cannot subtract these two matrix");
                         }
-                    } catch (Exception e) {
-                        System.out.println("We cannot subtract these two matrix");
-                    }
-                } else if (choice == 3) {
-                    try {
-                        int[][] result = Matrices.mult(mat1, mat2);
-                        System.out.println("\nThe Resultant matrix is:");
-                        for (int[] i: result) {
-                            for (int j: i) {
-                                System.out.print(j + " ");
+                        break;
+                    case 3:
+                        try {
+                            int[][] result = Matrices.mult(mat1, mat2);
+                            System.out.println("\nThe Resultant matrix is:");
+                            for (int[] i : result) {
+                                for (int j : i) {
+                                    System.out.print(j + " ");
+                                }
+                                System.out.println();
                             }
-                            System.out.println();
+                        } catch (Exception e) {
+                            System.out.println("We cannot multiply these two matrix");
                         }
-                    } catch (Exception e) {
-                        System.out.println("We cannot multiply these two matrix");
+                        break;
+                    case 4:
+                        if (Matrices.equal(mat1, mat2))
+                            System.out.println("\nThese two matrices are equal");
+                        else
+                            System.out.println("\nThese two matrices are not equal");
+                        break;
                     }
-                } else if (choice == 4) {
-                    if (Matrices.equal(mat1, mat2))
-                        System.out.println("\nThese two matrices are equal");
-                    else
-                        System.out.println("\nThese two matrices are not equal");
-                }
                 break;
 
             case 5: case 6: case 7: case 8: case 9:
@@ -243,53 +240,51 @@ public class Matrices {
                 int r = input.nextInt();
                 System.out.print("Enter columns of matrix: ");
                 int c = input.nextInt();
-                int[][] mat = new int[r][c];
+
                 System.out.println("\nEnter the co-efficients of matrix:");
-                for (int i = 0; i < r; i++) {
-                    for (int j = 0; j < c; j++) {
-                        System.out.print("matrix["+i+"]["+j+"]: ");
-                        mat[i][j] = input.nextInt();
-                    }
-                }
-                if (choice == 5) {
-                    if (Matrices.diagonal(mat))
-                        System.out.println("\nThis is a diagonal matrix");
-                    else
-                        System.out.println("\nThis is not a diagonal matrix");
-                }
-                else if (choice == 6) {
-                    if (Matrices.identity(mat))
-                        System.out.println("\nThis is an identity matrix");
-                    else
-                        System.out.println("\nThis is not an identity matrix");
-                }
-                else if (choice == 7) {
-                    if (Matrices.upperTriMat(mat))
-                        System.out.println("\nThis is a upper triangular matrix");
-                    else
-                        System.out.println("\nThis is not a upper triangular matrix");
-                }
-                else if (choice == 8) {
-                    if (Matrices.lowerTriMat(mat))
-                        System.out.println("\nThis is a lower triangular matrix");
-                    else
-                        System.out.println("\nThis is not a lower triangular matrix");
-                }
-                else if (choice == 9) {
-                    int[][] result = Matrices.transpose(mat);
-                    System.out.println("The transpose matrix is:");
-                    for (int[] i: result) {
-                        for (int j: i) {
-                            System.out.print(j);
+                int[][] mat = matInput(r,c);
+
+                switch (choice) {
+                    case 5:
+                        if (Matrices.diagonal(mat))
+                            System.out.println("\nThis is a diagonal matrix");
+                        else
+                            System.out.println("\nThis is not a diagonal matrix");
+                        break;
+                    case 6:
+                        if (Matrices.identity(mat))
+                            System.out.println("\nThis is an identity matrix");
+                        else
+                            System.out.println("\nThis is not an identity matrix");
+                        break;
+                    case 7:
+                        if (Matrices.upperTriMat(mat))
+                            System.out.println("\nThis is a upper triangular matrix");
+                        else
+                            System.out.println("\nThis is not a upper triangular matrix");
+                        break;
+                    case 8:
+                        if (Matrices.lowerTriMat(mat))
+                            System.out.println("\nThis is a lower triangular matrix");
+                        else
+                            System.out.println("\nThis is not a lower triangular matrix");
+                        break;
+                    case 9:
+                        int[][] result = Matrices.transpose(mat);
+                        System.out.println("The transpose matrix is:");
+                        for (int[] i : result) {
+                            for (int j : i) {
+                                System.out.print(j);
+                            }
+                            System.out.println();
                         }
-                        System.out.println();
-                    }
+                        break;
                 }
                 break;
-
             default:
                 System.out.println("\nInvalid Selection");
         }
     }
 }
+
 
